@@ -20,15 +20,15 @@ class SpreadsheetsController < ApplicationController
     session = GoogleDrive.saved_session('config.json')
     ws = session.spreadsheet_by_key(Spreadsheet.all.first[:url]).worksheets[0]
     # Dumps all cells.
-    data = []
+    document = []
     (1..ws.num_rows).each do |row|
-      data[row] = []
+      document[row] = []
       (1..ws.num_cols).each do |col|
-        data[row][col] = ws[row, col]
+        document[row][col] = ws[row, col]
       end
     end
 
-    render json: { message: data }
+    render json: { data: document }
   end
 
   private
