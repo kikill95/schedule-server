@@ -1,1 +1,5 @@
 $('.main').html("<%= j(render 'form') %>")
+$('.hint')
+  .animate({opacity: 1})
+  .delay(2000)
+  .animate({opacity: 0}, 1000)
