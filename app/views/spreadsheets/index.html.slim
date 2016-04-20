@@ -1,1 +1,2 @@
-| index
+.main
+  = render partial: 'form', :locals => {:spreadsheet => Spreadsheet.all.first || Spreadsheet.new}
