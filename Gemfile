@@ -14,7 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim'
 gem 'slim-rails'
 gem 'decent_exposure'
-gem 'google_drive'
+gem 'remote_table'
 
 group :development, :test do
   gem 'sqlite3'
