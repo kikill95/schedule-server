@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  require 'remote_table'
+  require 'google_drive'
   protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token
 
@@ -7,9 +7,18 @@ class ApplicationController < ActionController::Base
   after_filter :cors_set_access_control_headers
 
   def info
-    table = RemoteTable.new(
-      "https://spreadsheets.google.com/pub?key=#{Spreadsheet.all.first[:url]}&output=csv",
-      :headers => false).rows
+    session = GoogleDrive::Session.from_config('config.json')
+    table = []
+    (1..5).each do |index|
+      ws = session.spreadsheet_by_key(Spreadsheet.all.first[:url]).worksheets[-index]
+      table[index] = []
+      (1..ws.num_rows).each do |row|
+        table[index][row] = []
+        (1..ws.num_cols).each do |col|
+          table[index][row][col] = ws[row, col]
+        end
+      end
+    end
     render json: { data: table }
   end
 

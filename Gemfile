@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # we specify version for production
-ruby '2.3.0'
+ruby '2.3.1'
 
 gem 'rails'
 
@@ -14,7 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim'
 gem 'slim-rails'
 gem 'decent_exposure'
-gem 'remote_table'
+gem 'google_drive'
 
 group :development, :test do
   gem 'sqlite3'
